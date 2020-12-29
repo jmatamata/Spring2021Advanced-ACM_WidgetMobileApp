@@ -16,9 +16,18 @@ class ChecklistBloc {
 
     _taskStream.listen(
       (task) {
-        _userTaskList.addTask(task);
+        if (task != null && _userTaskList.getTaskList.contains(task)) {
+          List<Task> tempTaskList = _userTaskList.getTaskList;
 
-        _taskListSink.add(_userTaskList);
+          tempTaskList.replaceRange(tempTaskList.indexOf(task),
+              tempTaskList.indexOf(task) + 1, [task]);
+
+          _taskListSink.add(_userTaskList);
+        } else if (task != null) {
+          _userTaskList.addTask(task);
+
+          _taskListSink.add(_userTaskList);
+        } else if (task == null) _taskListSink.add(_userTaskList);
       },
       onError: (err) {
         print("Error");
@@ -36,11 +45,21 @@ class ChecklistBloc {
 class Task {
   String _taskName = '';
 
-  Task(String userMessage) {
-    _taskName = userMessage;
+  bool _completeStatus = false;
+
+  Task(String userTaskName, [userCompleteStatus = false]) {
+    _taskName = userTaskName;
+
+    _completeStatus = userCompleteStatus;
   }
 
   String get getTaskName => _taskName;
+
+  bool get getTaskCompleteStatus => _completeStatus;
+
+  changeStatus() {
+    _completeStatus = !_completeStatus;
+  }
 }
 
 class TaskList {
