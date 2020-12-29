@@ -92,17 +92,19 @@ class _ChecklistState extends State<ChecklistPage> {
                   ? ListView.builder(
                       itemCount: tempTaskList.length,
                       itemBuilder: (context, index) {
+                        Task tempTask = tempTaskList[index];
+
                         return CheckboxListTile(
-                          title: Text(tempTaskList[index].getTaskName),
-                          subtitle: Text(
-                              tempTaskList[index].getTaskDeadline.toString()),
-                          value: tempTaskList[index].getTaskCompleteStatus,
+                          title: Text(tempTask.getTaskName),
+                          subtitle: Text(tempTask
+                              .getTaskSubtitle(tempTask.getTaskDeadline)),
+                          value: tempTask.getTaskCompleteStatus,
                           controlAffinity: ListTileControlAffinity.leading,
                           activeColor: Colors.green,
                           checkColor: Colors.white,
                           onChanged: (bool newValue) {
-                            tempTaskList[index].changeStatus();
-                            checklistBloc.taskSink.add(tempTaskList[index]);
+                            tempTask.changeStatus();
+                            checklistBloc.taskSink.add(tempTask);
                           },
                           secondary: MaterialButton(
                             child: Text("Delete"),

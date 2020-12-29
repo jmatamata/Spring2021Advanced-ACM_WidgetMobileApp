@@ -64,6 +64,17 @@ class Task {
 
   DateTime get getTaskDeadline => _taskDeadline;
 
+  String getTaskSubtitle(DateTime userDateTime) {
+    DateTime tempCurrentDate = DateTime.now();
+
+    if (userDateTime.isBefore(tempCurrentDate))
+      return "Due Today";
+    else if (userDateTime.isBefore(tempCurrentDate.add(new Duration(days: 1))))
+      return "Due Tomorrow";
+    else
+      return "Deadline: ${userDateTime.month}/${userDateTime.day}/${userDateTime.year}";
+  }
+
   changeStatus() {
     _completeStatus = !_completeStatus;
   }
