@@ -41,22 +41,31 @@ class _ChecklistState extends State<ChecklistPage> {
 
   @override
   Widget build(BuildContext context) {
-    print("----------Widget Build----------");
+    print(
+        "----------Widget Build----------"); //This Prints when Widget is built.
 
     return Scaffold(
       body: Align(
         alignment: Alignment.topCenter,
         child: StreamBuilder(
-            stream: checklistBloc.taskListStream,
+            stream: checklistBloc.taskListStream
+                .where((taskList) => taskList != null),
             builder: (context, snapshot) {
+              List<Task> tempTaskList =
+                  (snapshot.hasData && snapshot.data.getTaskList != null)
+                      ? snapshot.data.getTaskList
+                      : <Task>[];
+
               return (snapshot.hasData)
                   ? ListView.builder(
-                      itemCount: snapshot.data.getTaskList().length,
+                      itemCount: tempTaskList.length,
                       itemBuilder: (context, index) {
                         return RadioListTile(
                           activeColor: Colors.blue,
-                          title: Text(
-                              snapshot.data.getTaskList()[index].getTaskName()),
+                          title: Text(tempTaskList[index].getTaskName),
+                          value: 0,
+                          groupValue: 1,
+                          onChanged: null,
                         );
                       },
                     )

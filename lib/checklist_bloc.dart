@@ -1,22 +1,29 @@
 import 'dart:async';
 
 class ChecklistBloc {
-  TaskList _userTaskList = TaskList();
+  TaskList _userTaskList;
 
   final _taskListStreamController = StreamController<TaskList>();
-  StreamSink<TaskList> get taskListSink => _taskListStreamController.sink;
+  StreamSink<TaskList> get _taskListSink => _taskListStreamController.sink;
   Stream<TaskList> get taskListStream => _taskListStreamController.stream;
 
   final _taskController = StreamController<Task>();
   StreamSink<Task> get taskSink => _taskController.sink;
-  Stream<Task> get taskStream => _taskController.stream;
+  Stream<Task> get _taskStream => _taskController.stream;
 
   ChecklistBloc() {
-    taskStream.listen((task) {
-      _userTaskList.addTask(task);
+    _userTaskList = TaskList();
 
-      taskListSink.add(_userTaskList);
-    });
+    _taskStream.listen(
+      (task) {
+        _userTaskList.addTask(task);
+
+        _taskListSink.add(_userTaskList);
+      },
+      onError: (err) {
+        print("Error");
+      },
+    );
   }
 
   void dispose() {
