@@ -93,6 +93,10 @@ class TaskList {
 
   List<Task> get getTaskList => _tasks;
 
+  TaskList();
+
+  TaskList.fromFile(this._tasks);
+
   addTask(Task userTask) {
     _tasks.add(userTask);
   }
