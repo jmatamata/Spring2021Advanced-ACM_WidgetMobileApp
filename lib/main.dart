@@ -34,6 +34,7 @@ class _MyAppState extends State<MyApp>{
         primaryColor: Color.fromRGBO(1, 113, 161, 1.0),
       ),
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text('ACM Flutter Application'),
         ),
