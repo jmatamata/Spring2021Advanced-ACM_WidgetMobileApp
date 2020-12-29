@@ -47,19 +47,34 @@ class Task {
 
   bool _completeStatus = false;
 
-  Task(String userTaskName, [userCompleteStatus = false]) {
+  DateTime _taskDeadline;
+
+  Task(String userTaskName, DateTime userTaskDeadline,
+      [bool userCompleteStatus = false]) {
     _taskName = userTaskName;
 
     _completeStatus = userCompleteStatus;
+
+    _taskDeadline = userTaskDeadline;
   }
 
   String get getTaskName => _taskName;
 
   bool get getTaskCompleteStatus => _completeStatus;
 
+  DateTime get getTaskDeadline => _taskDeadline;
+
   changeStatus() {
     _completeStatus = !_completeStatus;
   }
+}
+
+class TaskDataReturnType {
+  String taskName;
+
+  DateTime taskDeadline;
+
+  TaskDataReturnType(this.taskName, this.taskDeadline);
 }
 
 class TaskList {

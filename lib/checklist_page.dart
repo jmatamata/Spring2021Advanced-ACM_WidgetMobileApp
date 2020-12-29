@@ -9,8 +9,12 @@ class ChecklistPage extends StatefulWidget {
 class _ChecklistState extends State<ChecklistPage> {
   final checklistBloc = ChecklistBloc();
 
-  Future<String> createAlertDialog(BuildContext context) {
+  Future<TaskDataReturnType> createAlertDialog(BuildContext context) {
     TextEditingController customController = TextEditingController();
+
+    String _tempTaskName;
+
+    DateTime _tempTaskDeadline;
 
     return showDialog(
         context: context,
@@ -29,13 +33,35 @@ class _ChecklistState extends State<ChecklistPage> {
                   }),
               MaterialButton(
                   elevation: 5.0,
+                  child: Text("Date"),
+                  onPressed: () {
+                    createTimeDialog(context).then((date) {
+                      _tempTaskDeadline = date;
+                    });
+                  }),
+              MaterialButton(
+                  elevation: 5.0,
                   child: Text("Add"),
                   onPressed: () {
-                    Navigator.of(context).pop(customController.text.toString());
+                    _tempTaskName = customController.text.toString();
+
+                    Navigator.of(context).pop(
+                        TaskDataReturnType(_tempTaskName, _tempTaskDeadline));
                   }),
             ],
           );
         });
+  }
+
+  Future<DateTime> createTimeDialog(BuildContext context) {
+    return showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime.now(),
+      lastDate: DateTime(2222),
+    ).then((date) {
+      return date;
+    });
   }
 
   @override
@@ -62,12 +88,14 @@ class _ChecklistState extends State<ChecklistPage> {
                       ? snapshot.data.getTaskList
                       : <Task>[];
 
-              return (tempTaskList.length != 0)
+              return (0 < tempTaskList.length)
                   ? ListView.builder(
                       itemCount: tempTaskList.length,
                       itemBuilder: (context, index) {
                         return CheckboxListTile(
                           title: Text(tempTaskList[index].getTaskName),
+                          subtitle: Text(
+                              tempTaskList[index].getTaskDeadline.toString()),
                           value: tempTaskList[index].getTaskCompleteStatus,
                           controlAffinity: ListTileControlAffinity.leading,
                           activeColor: Colors.green,
@@ -93,7 +121,7 @@ class _ChecklistState extends State<ChecklistPage> {
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
                       child: Text(
-                        "Enter Task in Checklist using the '+' Button",
+                        "Enter Task for Checklist using the '+' Button",
                         textAlign: TextAlign.center,
                         textScaleFactor: 1.3,
                       ),
@@ -103,11 +131,17 @@ class _ChecklistState extends State<ChecklistPage> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () {
-          createAlertDialog(context).then((onValue) {
-            if (onValue == null)
-              checklistBloc.taskSink.add(null);
-            else
-              checklistBloc.taskSink.add(Task(onValue.trim()));
+          createAlertDialog(context).then((taskData) {
+            if (taskData != null) {
+              if (taskData.taskName == null)
+                checklistBloc.taskSink.add(null);
+              else if (taskData.taskDeadline == null)
+                checklistBloc.taskSink
+                    .add(Task(taskData.taskName, DateTime.now()));
+              else
+                checklistBloc.taskSink
+                    .add(Task(taskData.taskName, taskData.taskDeadline));
+            }
           });
         },
       ),
