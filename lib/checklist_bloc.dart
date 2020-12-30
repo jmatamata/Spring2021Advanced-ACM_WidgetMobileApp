@@ -72,7 +72,7 @@ class Task {
     else if (userDateTime.isBefore(tempCurrentDate.add(new Duration(days: 1))))
       return "Due Tomorrow";
     else
-      return "Deadline: ${userDateTime.month}/${userDateTime.day}/${userDateTime.year}";
+      return "Due: ${userDateTime.month}/${userDateTime.day}/${userDateTime.year}";
   }
 
   changeStatus() {
@@ -95,7 +95,7 @@ class TaskList {
 
   TaskList();
 
-  TaskList.fromFile(this._tasks);
+  TaskList.fromList(this._tasks);
 
   addTask(Task userTask) {
     _tasks.add(userTask);
