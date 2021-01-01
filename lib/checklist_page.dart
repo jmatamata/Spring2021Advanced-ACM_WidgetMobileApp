@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:acm_widget_mobile_app/checklist_bloc.dart';
+import 'checklist_deadline_clock.dart';
 
 class ChecklistPage extends StatefulWidget {
   @override
@@ -8,6 +9,10 @@ class ChecklistPage extends StatefulWidget {
 
 class _ChecklistState extends State<ChecklistPage> {
   final checklistBloc = ChecklistBloc();
+
+  final taskDeadlineClock = TaskDeadlineClock();
+
+  final int _deleteButtonColor = 0xfff7b6b2;
 
   Future<TaskDataReturnType> createAlertDialog(BuildContext context) {
     TextEditingController customController = TextEditingController();
@@ -68,6 +73,8 @@ class _ChecklistState extends State<ChecklistPage> {
   void dispose() {
     checklistBloc.dispose();
 
+    taskDeadlineClock.dispose();
+
     super.dispose();
   }
 
@@ -95,20 +102,53 @@ class _ChecklistState extends State<ChecklistPage> {
                         Task tempTask = tempTaskList[index];
 
                         return CheckboxListTile(
-                          title: Text(tempTask.getTaskName),
-                          subtitle: Text(tempTask
-                              .getTaskSubtitle(tempTask.getTaskDeadline)),
+                          title: StreamBuilder(
+                            stream: taskDeadlineClock.clockStream
+                                .where((time) => time != null),
+                            builder: (context, updatedTime) {
+                              print(tempTask.getTitleColor);
+                              return DecoratedBox(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(8.0),
+                                  color: tempTask.getTitleColor,
+                                ),
+                                position: DecorationPosition.background,
+                                child: Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(6.0, 8.0, 6.0, 8.0),
+                                  child: Text(
+                                    tempTask.getTaskName,
+                                    style: TextStyle(
+                                      backgroundColor: tempTask.getTitleColor,
+                                      fontSize: 18.0,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
+                          ),
+                          subtitle: Padding(
+                            padding: EdgeInsets.fromLTRB(6.0, 4.0, 0.0, 0.0),
+                            child: Text(
+                              tempTask
+                                  .getTaskSubtitle(tempTask.getTaskDeadline),
+                            ),
+                          ),
                           value: tempTask.getTaskCompleteStatus,
                           controlAffinity: ListTileControlAffinity.leading,
                           activeColor: Colors.green,
                           checkColor: Colors.white,
+                          isThreeLine: true,
+                          contentPadding:
+                              EdgeInsets.fromLTRB(0.0, 6.0, 0.0, 6.0),
                           onChanged: (bool newValue) {
                             tempTask.changeStatus();
                             checklistBloc.taskSink.add(tempTask);
                           },
                           secondary: MaterialButton(
                             child: Text("Delete"),
-                            color: Color(0xfff7b6b2),
+                            color: Color(_deleteButtonColor),
                             splashColor: Colors.red,
                             onPressed: () {
                               if (0 < tempTaskList.length) {
@@ -138,11 +178,11 @@ class _ChecklistState extends State<ChecklistPage> {
               if (taskData.taskName == null)
                 checklistBloc.taskSink.add(null);
               else if (taskData.taskDeadline == null)
-                checklistBloc.taskSink
-                    .add(Task(taskData.taskName, DateTime.now()));
+                checklistBloc.taskSink.add(Task(taskData.taskName,
+                    DateTime.now(), taskDeadlineClock.clockStream));
               else
-                checklistBloc.taskSink
-                    .add(Task(taskData.taskName, taskData.taskDeadline));
+                checklistBloc.taskSink.add(Task(taskData.taskName,
+                    taskData.taskDeadline, taskDeadlineClock.clockStream));
             }
           });
         },

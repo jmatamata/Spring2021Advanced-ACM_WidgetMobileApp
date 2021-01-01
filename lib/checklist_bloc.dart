@@ -1,4 +1,7 @@
 import 'dart:async';
+import 'package:flutter/material.dart';
+
+import 'checklist_color_changer.dart';
 
 class ChecklistBloc {
   TaskList _userTaskList;
@@ -27,7 +30,9 @@ class ChecklistBloc {
           _userTaskList.addTask(task);
 
           _taskListSink.add(_userTaskList);
-        } else if (task == null) _taskListSink.add(_userTaskList);
+        } else if (task == null) {
+          _taskListSink.add(_userTaskList);
+        }
       },
       onError: (err) {
         print("Error");
@@ -49,13 +54,27 @@ class Task {
 
   DateTime _taskDeadline;
 
+  DateTime _creationDate = DateTime.now();
+
+  TitleColorChanger _colorChanger;
+
+  Color _taskColor = Color(0xffffffff);
+
   Task(String userTaskName, DateTime userTaskDeadline,
+      Stream<DateTime> deadlineClockIn,
       [bool userCompleteStatus = false]) {
     _taskName = userTaskName;
 
     _completeStatus = userCompleteStatus;
 
     _taskDeadline = userTaskDeadline;
+
+    _colorChanger = TitleColorChanger(_creationDate, userTaskDeadline);
+
+    deadlineClockIn.listen((updatedTime) {
+      if (updatedTime != null)
+        _taskColor = _colorChanger.getTitleColor(updatedTime);
+    });
   }
 
   String get getTaskName => _taskName;
@@ -63,6 +82,8 @@ class Task {
   bool get getTaskCompleteStatus => _completeStatus;
 
   DateTime get getTaskDeadline => _taskDeadline;
+
+  Color get getTitleColor => _taskColor;
 
   String getTaskSubtitle(DateTime userDateTime) {
     DateTime tempCurrentDate = DateTime.now();

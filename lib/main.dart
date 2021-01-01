@@ -104,7 +104,7 @@ class NavDrawer extends StatelessWidget {
             ),
             Divider(height: 5),
             ListTile(
-              leading: Icon(Icons.add_box_rounded),
+              leading: Icon(Icons.assignment_turned_in_rounded),
               title: Text('Checklist'),
               onTap: () => onTap(context, 3),
             ),
