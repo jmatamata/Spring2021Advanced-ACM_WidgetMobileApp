@@ -61,6 +61,8 @@ class TitleColorChanger {
 
     print("New Updated Closest Time Frame: ${closestTimeFrame.toString()}");
 
-    return colorTimeFrames[closestTimeFrame];
+    return (closestTimeFrame != null)
+        ? colorTimeFrames[closestTimeFrame]
+        : Color(0xffffffff);
   }
 }
