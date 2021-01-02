@@ -5,8 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SingleWeather extends StatelessWidget{
-  final int index;
-  SingleWeather(this.index);
+  final WeatherLocation wl;
+  SingleWeather(this.wl);
 
   @override
   Widget build(BuildContext context){
@@ -27,18 +27,18 @@ class SingleWeather extends StatelessWidget{
                       SizedBox(
                         height: 150,
                       ),
-                      Text(locationList[index].city,
+                      Text(wl.city,
                           style: GoogleFonts.lato(
-                              fontSize: 35,
+                              fontSize: 40,
                               fontWeight: FontWeight.bold,
                               color: Colors.white)),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                        locationList[index].dateTime,
+                        wl.weatherDesc,
                         style: GoogleFonts.lato(
-                          fontSize: 14,
+                          fontSize: 15,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -48,24 +48,15 @@ class SingleWeather extends StatelessWidget{
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(locationList[index].temparature,
+                      Text(wl.temperature + ' \u2109',
                           style: GoogleFonts.lato(
                               fontSize: 85,
                               fontWeight: FontWeight.w300,
                               color: Colors.white)),
                       Row(
                         children: [
-                          SvgPicture.asset(
-                            locationList[index].iconUrl,
-                            width: 34,
-                            height: 34,
-                            color: Colors.white,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
                           Text(
-                            locationList[index].weatherType,
+                            wl.weatherType,
                             style: GoogleFonts.lato(
                               fontSize: 25,
                               fontWeight: FontWeight.w500,
@@ -100,7 +91,7 @@ class SingleWeather extends StatelessWidget{
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         Text(
-                          locationList[index].wind.toString(),
+                          wl.wind.toString(),
                           style: GoogleFonts.lato(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -132,13 +123,13 @@ class SingleWeather extends StatelessWidget{
                     ),
                     Column(
                       children: [
-                        Text('Rain',
+                        Text('Pressure',
                             style: GoogleFonts.lato(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         Text(
-                          locationList[index].rain.toString(),
+                          wl.pressure.toString(),
                           style: GoogleFonts.lato(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -146,7 +137,7 @@ class SingleWeather extends StatelessWidget{
                           ),
                         ),
                         Text(
-                          '%',
+                          'hPa',
                           style: GoogleFonts.lato(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -176,7 +167,7 @@ class SingleWeather extends StatelessWidget{
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         Text(
-                          locationList[index].humidity.toString(),
+                          wl.humidity.toString(),
                           style: GoogleFonts.lato(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
