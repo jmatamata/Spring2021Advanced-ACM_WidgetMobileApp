@@ -17,7 +17,12 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int index = 0;
 
-  List<Widget> list = [HomePage(), WeatherPage(), RecipePage(),  ChecklistPage()];
+  List<Widget> list = [
+    HomePage(),
+    WeatherPage(),
+    RecipePage(),
+    ChecklistPage()
+  ];
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   // This widget is the root of your application.
@@ -37,12 +42,9 @@ class _MyAppState extends State<MyApp> {
         primaryColor: Color.fromRGBO(1, 113, 161, 1.0),
       ),
       home: Scaffold(
-
         resizeToAvoidBottomInset: false,
-
         key: _scaffoldKey,
-        extendBodyBehindAppBar: true,
-
+        extendBodyBehindAppBar: false,
         appBar: AppBar(
           leading: IconButton(
             icon: SvgPicture.asset(
@@ -131,10 +133,8 @@ class NavDrawer extends StatelessWidget {
             ),
             Divider(height: 5),
             ListTile(
-
               leading: Icon(Icons.assignment_turned_in_rounded),
               title: Text('Checklist'),
-
               onTap: () => onTap(context, 3),
             ),
           ],
