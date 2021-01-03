@@ -1,4 +1,4 @@
-import 'package:acm_widget_mobile_app/alvins_page.dart';
+import 'package:acm_widget_mobile_app/recipe_page.dart';
 import 'package:acm_widget_mobile_app/home.dart';
 import 'package:acm_widget_mobile_app/jorges_page.dart';
 import 'package:acm_widget_mobile_app/weather_page.dart';
@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp>{
   int index = 0;
-  List<Widget> list = [HomePage(), WeatherPage(), AlvinsPage(), JorgesPage()];
+  List<Widget> list = [HomePage(), WeatherPage(), RecipePage(), JorgesPage()];
 
   // This widget is the root of your application.
   @override
@@ -94,14 +94,14 @@ class NavDrawer extends StatelessWidget {
             ),
             Divider(height: 5),
             ListTile(
-              leading: Icon(Icons.alarm),
-              title: Text('Alvin'),
+              leading: Icon(Icons.fastfood),
+              title: Text('Recipe Searcher'),
               onTap: () => onTap(context, 2),
             ),
             Divider(height: 5),
             ListTile(
-              leading: Icon(Icons.fastfood),
-              title: Text('Jorge'),
+              leading: Icon(Icons.alarm),
+              title: Text('To-do List'),
               onTap: () => onTap(context, 3),
             ),
           ],
