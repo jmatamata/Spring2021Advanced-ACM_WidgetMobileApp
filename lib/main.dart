@@ -1,6 +1,6 @@
 import 'package:acm_widget_mobile_app/alvins_page.dart';
 import 'package:acm_widget_mobile_app/home.dart';
-import 'package:acm_widget_mobile_app/jorges_page.dart';
+import 'package:acm_widget_mobile_app/checklist_page.dart';
 import 'package:acm_widget_mobile_app/weather_page.dart';
 import 'package:flutter/material.dart';
 
@@ -13,9 +13,14 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp>{
+class _MyAppState extends State<MyApp> {
   int index = 0;
-  List<Widget> list = [HomePage(), WeatherPage(), AlvinsPage(), JorgesPage()];
+  List<Widget> list = [
+    HomePage(),
+    WeatherPage(),
+    AlvinsPage(),
+    ChecklistPage()
+  ];
 
   // This widget is the root of your application.
   @override
@@ -38,7 +43,7 @@ class _MyAppState extends State<MyApp>{
           title: Text('ACM Flutter Application'),
         ),
         body: list[index],
-        drawer: NavDrawer(onTap: (ctx,i){
+        drawer: NavDrawer(onTap: (ctx, i) {
           setState(() {
             index = i;
             Navigator.pop(ctx);
@@ -99,8 +104,8 @@ class NavDrawer extends StatelessWidget {
             ),
             Divider(height: 5),
             ListTile(
-              leading: Icon(Icons.fastfood),
-              title: Text('Jorge'),
+              leading: Icon(Icons.assignment_turned_in_rounded),
+              title: Text('Checklist'),
               onTap: () => onTap(context, 3),
             ),
           ],
