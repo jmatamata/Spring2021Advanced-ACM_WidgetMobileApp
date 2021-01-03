@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:acm_widget_mobile_app/data/global_data.dart';
 
 class Settings {
   // keeps track of if the search bar is in normal or reverse mode
   static bool isSearchBarNormal = true;
 
-// controllers for the text field/search bars
+  // controllers for the text field/search bars
   static final normalController = TextEditingController();
   static final reverseController = TextEditingController();
 
   // https://developer.edamam.com/edamam-docs-recipe-api
   // https://spoonacular.com/food-api/console#Dashboard
 
-  // PUT YOUR KEYS HERE
-  static String edamamAPIKey = "9b328a0803f5c0814aa22942b5c8fcc0";
-  static String edamamAPIAppID = "73ad97b0";
-  static String spoonacularAPIKey = "a3406df083d7407c8a72f642e00477ad";
+  // put your keys in the data/global_data.dart file
+  static String edamamAPIKey = GlobalData.edamamAPIKey;
+  static String edamamAPIAppID = GlobalData.edamamAPIAppID;
+  static String spoonacularAPIKey = GlobalData.spoonacularAPIKey;
 
   // main link of the API
   static String edamamAPI = "https://api.edamam.com/search?q=";

@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart';
 import 'package:transformer_page_view/transformer_page_view.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class WeatherPage extends StatefulWidget {
   @override
@@ -56,12 +57,20 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     String mainWeather;
+    Widget spinner;
 
     if(_locationList == null){
       mainWeather = 'unknown';
+      spinner = Center(
+        child: SpinKitCircle(
+          color: Colors.grey,
+          size: 50.0,
+        )
+      );
     }
     else{
       mainWeather = _locationList[_currentPage].weatherType.toLowerCase();
+      spinner = SizedBox(height: 0);
     }
 
     //sun
@@ -108,7 +117,9 @@ class _WeatherPageState extends State<WeatherPage> {
           Container(
             decoration: BoxDecoration(color: Colors.black38),
           ),
-
+          Container(
+              child: spinner
+          ),
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
