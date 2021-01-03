@@ -1,3 +1,11 @@
 class GlobalData {
-  static String owaKey = '63b10af3e3ab2dc682c0d848b50e2351';
+  // INSERT YOUR OWN KEYS PLEASE
+
+  // weather app key
+  static String owaKey = ""; // https://home.openweathermap.org/api_keys
+
+  // recipe app keys
+  static String edamamAPIKey = ""; // https://developer.edamam.com/edamam-docs-recipe-api
+  static String edamamAPIAppID = "";
+  static String spoonacularAPIKey = ""; // https://spoonacular.com/food-api/console#Dashboard
 }
