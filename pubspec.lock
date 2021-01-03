@@ -102,6 +102,7 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+
   google_fonts:
     dependency: "direct main"
     description:
@@ -151,6 +152,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0-nullsafety.1"
+
   path_drawing:
     dependency: transitive
     description:
@@ -200,6 +202,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4+3"
+
   pedantic:
     dependency: transitive
     description:
@@ -214,6 +217,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.0"
+
   platform:
     dependency: transitive
     description:
@@ -334,3 +338,4 @@ packages:
 sdks:
   dart: ">=2.10.0-110 <2.11.0"
   flutter: ">=1.18.0-6.0.pre <2.0.0"
+

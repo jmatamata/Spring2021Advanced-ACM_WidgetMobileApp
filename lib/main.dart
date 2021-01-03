@@ -1,6 +1,6 @@
 import 'package:acm_widget_mobile_app/alvins_page.dart';
 import 'package:acm_widget_mobile_app/home.dart';
-import 'package:acm_widget_mobile_app/jorges_page.dart';
+import 'package:acm_widget_mobile_app/checklist_page.dart';
 import 'package:acm_widget_mobile_app/weather_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,8 +16,17 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int index = 0;
+
   List<Widget> list = [HomePage(), WeatherPage(), AlvinsPage(), JorgesPage()];
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
+  List<Widget> list = [
+    HomePage(),
+    WeatherPage(),
+    AlvinsPage(),
+    ChecklistPage()
+  ];
+
 
   // This widget is the root of your application.
   @override
@@ -126,8 +135,8 @@ class NavDrawer extends StatelessWidget {
             ),
             Divider(height: 5),
             ListTile(
-              leading: Icon(Icons.fastfood),
-              title: Text('Jorge'),
+              leading: Icon(Icons.assignment_turned_in_rounded),
+              title: Text('Checklist'),
               onTap: () => onTap(context, 3),
             ),
           ],
