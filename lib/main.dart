@@ -1,4 +1,4 @@
-import 'package:acm_widget_mobile_app/alvins_page.dart';
+import 'package:acm_widget_mobile_app/recipe_page.dart';
 import 'package:acm_widget_mobile_app/home.dart';
 import 'package:acm_widget_mobile_app/checklist_page.dart';
 import 'package:acm_widget_mobile_app/weather_page.dart';
@@ -17,16 +17,8 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int index = 0;
 
-  List<Widget> list = [HomePage(), WeatherPage(), AlvinsPage(), JorgesPage()];
+  List<Widget> list = [HomePage(), WeatherPage(), RecipePage(),  ChecklistPage()];
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  List<Widget> list = [
-    HomePage(),
-    WeatherPage(),
-    AlvinsPage(),
-    ChecklistPage()
-  ];
-
 
   // This widget is the root of your application.
   @override
@@ -45,8 +37,12 @@ class _MyAppState extends State<MyApp> {
         primaryColor: Color.fromRGBO(1, 113, 161, 1.0),
       ),
       home: Scaffold(
+
+        resizeToAvoidBottomInset: false,
+
         key: _scaffoldKey,
         extendBodyBehindAppBar: true,
+
         appBar: AppBar(
           leading: IconButton(
             icon: SvgPicture.asset(
@@ -129,14 +125,16 @@ class NavDrawer extends StatelessWidget {
             ),
             Divider(height: 5),
             ListTile(
-              leading: Icon(Icons.alarm),
-              title: Text('Alvin'),
+              leading: Icon(Icons.fastfood),
+              title: Text('Recipe Searcher'),
               onTap: () => onTap(context, 2),
             ),
             Divider(height: 5),
             ListTile(
+
               leading: Icon(Icons.assignment_turned_in_rounded),
               title: Text('Checklist'),
+
               onTap: () => onTap(context, 3),
             ),
           ],
