@@ -1,6 +1,6 @@
+import 'package:acm_widget_mobile_app/blocs/checklist_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:acm_widget_mobile_app/checklist_bloc.dart';
-import 'checklist_deadline_clock.dart';
+import '../models/checklist_deadline_clock.dart';
 
 class ChecklistPage extends StatefulWidget {
   @override

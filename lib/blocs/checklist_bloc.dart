@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-import 'checklist_color_changer.dart';
+import '../models/checklist_color_changer.dart';
 
 class ChecklistBloc {
   TaskList _userTaskList;

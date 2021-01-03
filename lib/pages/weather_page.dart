@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:acm_widget_mobile_app/data/global_data.dart';
+import 'package:acm_widget_mobile_app/models/weather_locations.dart';
+import 'package:acm_widget_mobile_app/widgets/building_transform.dart';
+import 'package:acm_widget_mobile_app/widgets/single_weather.dart';
+import 'package:acm_widget_mobile_app/widgets/slider_dot.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
-import 'models/weather_locations.dart';
-import 'widgets/building_transform.dart';
-import 'widgets/single_weather.dart';
-import 'widgets/slider_dot.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -62,10 +62,10 @@ class _WeatherPageState extends State<WeatherPage> {
     if(_locationList == null){
       mainWeather = 'unknown';
       spinner = Center(
-        child: SpinKitCircle(
-          color: Colors.grey,
-          size: 50.0,
-        )
+          child: SpinKitCircle(
+            color: Colors.grey,
+            size: 50.0,
+          )
       );
     }
     else{
@@ -95,62 +95,60 @@ class _WeatherPageState extends State<WeatherPage> {
     }
     //extreme
     else if(mainWeather.contains('severe') || mainWeather.contains('hurricane') || mainWeather.contains('tornado') || mainWeather.contains('extreme')){
-        bgImg = 'assets/extreme.png';
+      bgImg = 'assets/extreme.png';
     }
     //unknown
     else{
-        bgImg = 'assets/unknown.jpg';
+      bgImg = 'assets/unknown.jpg';
     }
-
-    String date = DateFormat('MM-dd-yyyy KK:mm a').format(DateTime.now()).toString();
 
     return Scaffold(
         body: Container(
-      child: Stack(
-        children: [
-          Image.asset(
-            bgImg,
-            fit: BoxFit.cover,
-            height: double.infinity,
-            width: double.infinity,
-          ),
-          Container(
-            decoration: BoxDecoration(color: Colors.black38),
-          ),
-          Container(
-              child: spinner
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: Stack(
             children: [
-              Container(
-          margin: EdgeInsets.only(top: 140, left: 15),
-                child: Row(
-                  children: [
-                    for (int i = 0; i < (_locationList == null ? 0 : _locationList.length); i++)
-                      if (i == _currentPage) SliderDot(true) else SliderDot(false)
-                  ],
-                ),
+              Image.asset(
+                bgImg,
+                fit: BoxFit.cover,
+                height: double.infinity,
+                width: double.infinity,
               ),
               Container(
-                margin: EdgeInsets.only(top: 130, left: 55),
-                child: _locationList == null ?  Text('') : Text(date, style: GoogleFonts.lato(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                )),
+                decoration: BoxDecoration(color: Colors.black38),
               ),
+              Container(
+                  child: spinner
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 50, left: 15),
+                    child: Row(
+                      children: [
+                        for (int i = 0; i < (_locationList == null ? 0 : _locationList.length); i++)
+                          if (i == _currentPage) SliderDot(true) else SliderDot(false)
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 40, left: 55),
+                    child: _locationList == null ?  Text('') : Text(DateFormat('MM-dd-yyyy KK:mm a').format(DateTime.now()).toString(), style: GoogleFonts.lato(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    )),
+                  ),
+                ],
+              ),
+              TransformerPageView(
+                  transformer: ScaleAndFadeTransformer(),
+                  viewportFraction: 0.8,
+                  onPageChanged: _onPageChange,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: _locationList == null ? 0 : _locationList.length,
+                  itemBuilder: (ctx, i) => SingleWeather(_locationList[i])),
             ],
           ),
-          TransformerPageView(
-            transformer: ScaleAndFadeTransformer(),
-              viewportFraction: 0.8,
-              onPageChanged: _onPageChange,
-              scrollDirection: Axis.horizontal,
-              itemCount: _locationList == null ? 0 : _locationList.length,
-              itemBuilder: (ctx, i) => SingleWeather(_locationList[i])),
-        ],
-      ),
-    ));
+        ));
   }
 }
