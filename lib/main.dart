@@ -1,7 +1,7 @@
-import 'package:acm_widget_mobile_app/recipe_page.dart';
-import 'package:acm_widget_mobile_app/home.dart';
-import 'package:acm_widget_mobile_app/checklist_page.dart';
-import 'package:acm_widget_mobile_app/weather_page.dart';
+import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/recipe_page.dart';
+import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/home.dart';
+import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/checklist_page.dart';
+import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/weather_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter App',
+      title: 'Clutter',
       theme: ThemeData(
         // This is the theme of your application.
 
@@ -39,13 +39,14 @@ class _MyAppState extends State<MyApp> {
         // closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
         scaffoldBackgroundColor: Colors.white,
-        primaryColor: Color.fromRGBO(1, 113, 161, 1.0),
+        primaryColor: Colors.black,
       ),
       home: Scaffold(
         resizeToAvoidBottomInset: false,
         key: _scaffoldKey,
         extendBodyBehindAppBar: false,
         appBar: AppBar(
+          title: Text("Clutter"),
           leading: IconButton(
             icon: SvgPicture.asset(
               'assets/menu.svg',
@@ -57,8 +58,8 @@ class _MyAppState extends State<MyApp> {
               _scaffoldKey.currentState.openDrawer();
             },
           ),
-          elevation: 5,
-          backgroundColor: Colors.transparent,
+          elevation: 0,
+          backgroundColor: Colors.black,
         ),
         body: list[index],
         drawer: NavDrawer(onTap: (ctx, i) {
@@ -97,7 +98,7 @@ class NavDrawer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             DrawerHeader(
-              decoration: BoxDecoration(color: Color.fromRGBO(1, 85, 138, 1.0)),
+              decoration: BoxDecoration(color: Colors.black),
               child: Padding(
                 padding: EdgeInsets.all(0),
                 child: Column(

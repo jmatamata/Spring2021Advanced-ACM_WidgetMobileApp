@@ -40,7 +40,12 @@ dev_dependencies:
   http: ^0.12.2
   flutter_spinkit: "^4.1.2"
   url_launcher: ^5.7.5
+  flutter_launcher_icons: ^0.8.1
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -55,19 +60,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/acm_logo.png
-    - assets/cloudy.jpg
-    - assets/cloudy.svg
-    - assets/menu.svg
-    - assets/moon.svg
-    - assets/night.jpg
-    - assets/rainy.jpg
-    - assets/rain.svg
-    - assets/sun.svg
-    - assets/sunny.jpg
-    - assets/snowy.jpg
-    - assets/extreme.png
-    - assets/unknown.jpg
+    - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

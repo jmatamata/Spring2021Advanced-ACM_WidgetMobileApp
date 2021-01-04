@@ -1,7 +1,7 @@
 import 'dart:ui';
 
+import 'package:acm_widget_mobile_app/settings/recipe_page_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:acm_widget_mobile_app/recipe_page_settings.dart';
 
 class RecipeSettings extends StatefulWidget {
   @override

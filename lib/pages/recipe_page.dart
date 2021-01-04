@@ -1,10 +1,8 @@
+import 'package:acm_widget_mobile_app/settings/recipe_page_settings.dart';
+import 'package:acm_widget_mobile_app/settings/recipe_search_settings.dart';
+import 'package:acm_widget_mobile_app/widgets/recipe_search_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-
-import 'package:acm_widget_mobile_app/recipe_search_bar.dart';
-import 'package:acm_widget_mobile_app/recipe_page_settings.dart';
-import 'package:acm_widget_mobile_app/recipe_search_settings.dart';
-
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -31,6 +29,7 @@ class _RecipePageState extends State<RecipePage> {
           child: Stack(
             children: <Widget> [
               // the positioned are circles to create layers in the background
+              //Left Circle
               Positioned(
                 bottom: 20,
                 right: 125,
@@ -39,10 +38,11 @@ class _RecipePageState extends State<RecipePage> {
                   width: 400, 
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(200),
-                    color: Color.fromRGBO(191, 255, 192, 0.8)
+                    color: Colors.black54//Color.fromRGBO(191, 255, 192, 0.8)
                   ),
                 )
               ),
+              //Top Right Circle
               Positioned(
                 bottom: 150,
                 left: 150,
@@ -51,10 +51,11 @@ class _RecipePageState extends State<RecipePage> {
                   width: 300,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(150),
-                    color: Color.fromRGBO(163, 255, 165, 0.65)
+                    color: Colors.black87 //Color.fromRGBO(163, 255, 165, 0.65)
                   ),
                 )
               ),
+              //Bottom Right Circle
               Positioned(
                 top: 80,
                 left: 200,
@@ -63,14 +64,15 @@ class _RecipePageState extends State<RecipePage> {
                   width: 250,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(125),
-                    color: Color.fromRGBO(107, 250, 100, 0.3)
+                    color: Colors.black38//Color.fromRGBO(107, 250, 100, 0.3)
                   ),
                 )
               ),
+              //Largest Background Circle
               Container(
                 padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
                 decoration: BoxDecoration(
-                    color: Color.fromRGBO(99, 255, 101, 0.6),
+                    color: Colors.black26, //Color.fromRGBO(99, 255, 101, 0.6),
                     borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(40.0),
                     )

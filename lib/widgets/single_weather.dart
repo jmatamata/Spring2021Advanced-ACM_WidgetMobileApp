@@ -25,7 +25,7 @@ class SingleWeather extends StatelessWidget{
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 150,
+                        height: 70,
                       ),
                       Text(wl.city,
                           style: GoogleFonts.lato(
