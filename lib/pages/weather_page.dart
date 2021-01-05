@@ -47,7 +47,7 @@ class _WeatherPageState extends State<WeatherPage> {
     var citiesList = decodedJson['list'];
     for(int i = 0; i < citiesList.length; i++){
       var city = citiesList[i];
-      list.add(new WeatherLocation(city: city['name'], temperature: city['main']['temp'].toStringAsFixed(0), weatherType: city['weather'][0]['main'], weatherDesc: city['weather'][0]['description'], wind: city['wind']['speed'], pressure: city['main']['pressure'].round(), humidity: city['main']['humidity'].round()));
+      list.add(new WeatherLocation(city: city['name'], temperature: city['main']['temp'].toStringAsFixed(0), weatherType: city['weather'][0]['main'], weatherDesc: city['weather'][0]['description'], wind: city['wind']['speed'].toStringAsFixed(0), pressure: city['main']['pressure'].toStringAsFixed(0), humidity: city['main']['humidity'].toStringAsFixed(0)));
     }
     setState(() {
       _locationList = list;

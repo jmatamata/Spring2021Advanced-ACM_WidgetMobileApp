@@ -5,9 +5,9 @@ class WeatherLocation {
   final String temperature;
   final String weatherType;
   final String weatherDesc;
-  final double wind;
-  final int pressure;
-  final int humidity;
+  final String wind;
+  final String pressure;
+  final String humidity;
 
   WeatherLocation({
     @required this.city,

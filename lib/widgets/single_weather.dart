@@ -38,7 +38,7 @@ class SingleWeather extends StatelessWidget{
                       Text(
                         wl.weatherDesc,
                         style: GoogleFonts.lato(
-                          fontSize: 15,
+                          fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -91,7 +91,7 @@ class SingleWeather extends StatelessWidget{
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         Text(
-                          wl.wind.toString(),
+                          wl.wind,
                           style: GoogleFonts.lato(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class SingleWeather extends StatelessWidget{
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         Text(
-                          wl.pressure.toString(),
+                          wl.pressure,
                           style: GoogleFonts.lato(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
@@ -167,7 +167,7 @@ class SingleWeather extends StatelessWidget{
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white)),
                         Text(
-                          wl.humidity.toString(),
+                          wl.humidity,
                           style: GoogleFonts.lato(
                             fontSize: 24,
                             fontWeight: FontWeight.bold,
