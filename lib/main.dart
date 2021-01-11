@@ -1,9 +1,10 @@
-import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/recipe_page.dart';
-import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/home.dart';
-import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/checklist_page.dart';
-import 'file:///D:/Android%20Studio/Android%20Studio%20Projects/Spring2021Advanced-ACM_WidgetMobileApp/lib/pages/weather_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'pages/checklist_page.dart';
+import 'pages/home.dart';
+import 'pages/recipe_page.dart';
+import 'pages/weather_page.dart';
 
 void main() {
   runApp(MyApp());
