@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:flutter_svg/svg.dart';
 import 'pages/checklist_page.dart';
 import 'pages/home.dart';
 import 'pages/recipe_page.dart';
@@ -24,6 +23,7 @@ class _MyAppState extends State<MyApp> {
     RecipePage(),
     ChecklistPage()
   ];
+
   GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   // This widget is the root of your application.
