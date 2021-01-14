@@ -106,7 +106,6 @@ class _ChecklistState extends State<ChecklistPage> {
                             stream: taskDeadlineClock.clockStream
                                 .where((time) => time != null),
                             builder: (context, updatedTime) {
-                              print(tempTask.getTitleColor);
                               return DecoratedBox(
                                 decoration: BoxDecoration(
                                   shape: BoxShape.rectangle,
