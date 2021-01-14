@@ -31,6 +31,7 @@ class _SearchBarState extends State<SearchBar> {
         Container(
           padding: EdgeInsets.fromLTRB(40, 7, 40, 0),
           child: TextField(
+              style: TextStyle(color: Colors.white),
               controller: SearchBar.normalController,
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
