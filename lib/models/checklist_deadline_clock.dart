@@ -2,9 +2,7 @@ import 'dart:async';
 
 class TaskDeadlineClock {
   final _taskDeadlineClockStreamController =
-      StreamController<DateTime>.broadcast(onListen: () {
-    print("Listened");
-  });
+      StreamController<DateTime>.broadcast(onListen: () {});
   StreamSink<DateTime> get _clockSink =>
       _taskDeadlineClockStreamController.sink;
   Stream<DateTime> get clockStream =>

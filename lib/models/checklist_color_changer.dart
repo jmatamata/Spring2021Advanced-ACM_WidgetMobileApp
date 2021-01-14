@@ -44,8 +44,6 @@ class TitleColorChanger {
       colorTimeFrames[creationDateIn.add(_deadlineIncrement * i)] =
           Color(deadlineColorList[i - 1]);
     }
-
-    print(colorTimeFrames);
   }
 
   Color getTitleColor(DateTime updatedTime) {
@@ -58,8 +56,6 @@ class TitleColorChanger {
         closestTimeFrame = timeFrame;
       }
     });
-
-    print("New Updated Closest Time Frame: ${closestTimeFrame.toString()}");
 
     return (closestTimeFrame != null)
         ? colorTimeFrames[closestTimeFrame]
