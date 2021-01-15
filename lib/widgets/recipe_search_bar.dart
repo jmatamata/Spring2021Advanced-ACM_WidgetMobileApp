@@ -34,11 +34,11 @@ class _SearchBarState extends State<SearchBar> {
               style: TextStyle(color: Colors.white),
               controller: SearchBar.normalController,
               decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white)),
-                  hintText: "Enter recipe name",
-                  hintStyle: TextStyle(color: Colors.white),
-                  fillColor: Colors.white)),
+                enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white)),
+                hintText: "Enter recipe name",
+                hintStyle: TextStyle(color: Colors.white),
+              )),
         )
       ],
     );
