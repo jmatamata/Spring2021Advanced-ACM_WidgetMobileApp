@@ -14,10 +14,7 @@ class RecipePage extends StatefulWidget {
 
 class _RecipePageState extends State<RecipePage> {
   bool isLoading = false;
-
   Map edamamReturned;
-
-  Map spoonacularReturned;
 
   @override
   Widget build(BuildContext context) {
@@ -34,8 +31,7 @@ class _RecipePageState extends State<RecipePage> {
                   width: 400,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(200),
-                      color: Colors.black54 //Color.fromRGBO(191, 255, 192, 0.8)
-                      ),
+                      color: Colors.black54),
                 )),
             //Top Right Circle
             Positioned(
@@ -46,62 +42,51 @@ class _RecipePageState extends State<RecipePage> {
                   width: 300,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(150),
-                      color:
-                          Colors.black87 //Color.fromRGBO(163, 255, 165, 0.65)
-                      ),
+                      color: Colors.black87),
                 )),
             //Bottom Right Circle
             Positioned(
-              top: 80,
-              left: 200,
-              child: Container(
-                height: 250,
-                width: 250,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(125),
-                    color: Colors.black38 //Color.fromRGBO(107, 250, 100, 0.3)
-                    ),
-              ),
-            ),
-
+                top: 80,
+                left: 200,
+                child: Container(
+                  height: 250,
+                  width: 250,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(125),
+                      color: Colors.black38),
+                )),
             Container(
               padding: EdgeInsets.fromLTRB(0, 20, 0, 0),
               decoration: BoxDecoration(
-                  color: Colors.black26, //Color.fromRGBO(99, 255, 101, 0.6),
+                  color: Colors.black26,
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(40.0),
                   )),
-              child: Column(
-                children: <Widget>[
-                  SearchBar(), // this is the search bar that will depend on the normal/reverse setting
-                  Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(40, 15, 0, 0),
-                          child: RaisedButton(
-                              onPressed: () async {
-                                var currentFocus = FocusScope.of(context);
-                                if (!currentFocus.hasPrimaryFocus) {
-                                  currentFocus.unfocus();
-                                }
+              child: Column(children: <Widget>[
+                SearchBar(),
+                Padding(
+                  padding: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                  child: RaisedButton(
+                      onPressed: () async {
+                        var currentFocus = FocusScope.of(context);
+                        if (!currentFocus.hasPrimaryFocus) {
+                          currentFocus.unfocus();
+                        }
 
-                                setState(() {
-                                  isLoading = true;
-                                });
+                        setState(() {
+                          isLoading = true;
+                        });
 
-                                await getData(SearchBar.normalController.text);
+                        await getData(SearchBar.normalController.text);
 
-                                setState(() {
-                                  isLoading = false;
-                                });
-                              },
-                              child: Text("Search"),
-                              color: Colors.lightBlue),
-                        )
-                      ])
-                ],
-              ),
+                        setState(() {
+                          isLoading = false;
+                        });
+                      },
+                      child: Text("Search"),
+                      color: Colors.lightBlue),
+                ),
+              ]),
             ),
           ]),
         ),
